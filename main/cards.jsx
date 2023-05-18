@@ -1,4 +1,5 @@
 import { Box, Button, HStack, Text, Heading, ScrollView } from 'native-base';
+import { useState } from 'react';
 
 function Card(){
     return(
@@ -9,7 +10,7 @@ function Card(){
             <HStack justifyContent={'space-between'} alignItems={'center'}>
                 <Box>
                     <Text color={'white'} pt={4} fontSize={'xs'}>Card Holder Name</Text>
-                    <Heading fontSize={'lg'} color={'white'} fontWeight={'bold'} >Agba Dev</Heading>
+                    <Heading fontSize={'lg'} color={'white'} fontWeight={'bold'} >Baby Dev</Heading>
                 </Box>
                 <Box>
                     <Text color={'white'} pt={4} fontSize={'xs'}>Expiry Date</Text>
@@ -22,6 +23,7 @@ function Card(){
 
 }
 export default function CardPage(){
+    const [ physical, setPhysical] = useState(true)
     return(
         <Box flex={1} >
             <Box p={4}>
@@ -29,24 +31,28 @@ export default function CardPage(){
                 <HStack justifyContent={'center'}>
                     <Button w={'50%'}
                         borderRadius={0}
-                        bg={'black'} color={'white'}
-                        _hover={{bg:'gray.900'}}
-                        _active={{bg:'gray.800'}}
-                        py={4}>
+                        bg={physical ? 'black' : 'blueGray.500'} color={'white'}
+                        _hover={{bg:'blueGray.900'}}
+                        _active={{bg:'blueGray.800'}}
+                        py={4}
+                        onPress={()=>setPhysical(!physical)}
+                        >
                             Physical Cards
                     </Button>
                     <Button w={'50%'}
                         borderRadius={0}
-                        bg={'gray.500'} color={'white'}
-                        _hover={{bg:'gray.900'}}
-                        _active={{bg:'gray.800'}}
+                        bg={physical ? 'blueGray.500' : 'black'} color={'white'}
+                        _hover={{bg:'blueGray.900'}}
+                        _active={{bg:'blueGray.800'}}
                         py={4}
+                        onPress={()=>setPhysical(!physical)}
                         >
                             Virtual Cards
                     </Button>
                 </HStack>
             </Box>
-            {/* <ScrollView p={4} flex={1} py={8} pb={8}>
+            { physical ?
+            <ScrollView p={4} flex={1} py={8} pb={8}>
                 <Text fontSize={'xl'} pb={4} fontWeight={'medium'}> Credit Card</Text>
                 <Card />
                 <Card />
@@ -55,20 +61,20 @@ export default function CardPage(){
                 <Card />
                 <Card />
                 <Box h={24}></Box>
-            </ScrollView>  */}
+            </ScrollView> :
             <ScrollView p={4} flex={1} py={8} pb={8}>
                 <Text fontSize={'xl'} pb={4} fontWeight={'medium'}> Virtual Cards</Text>
                 <Card />
                 <Box h={64}></Box>
                 <Button 
                     bg={'black'} color={'white'}
-                    _hover={{bg:'gray.900'}}
-                    _active={{bg:'gray.800'}}
+                    _hover={{bg:'blueGray.900'}}
+                    _active={{bg:'blueGray.800'}}
                     py={4}>
                         Add New Card
                 </Button>
                 <Box h={24}></Box>
-            </ScrollView>             
+            </ScrollView>  }           
         </Box>       
     )
 }

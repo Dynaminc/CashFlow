@@ -1,6 +1,6 @@
 import { KeyboardAvoidingView, Center, Heading,Box, VStack, HStack, Text, Input, Button, Spinner } from "native-base";
 
-export default function ProcessingPayment(){
+export default function ProcessingPayment({navigation}){
     return(
         <Center flex={1} py={10}>
             <Center flex={1} w={['95%','90%', '85%','80%','40%']}>
@@ -10,8 +10,9 @@ export default function ProcessingPayment(){
             <HStack alignItems={'center'} justifyContent={'center'}  w={'full'} >
                 <Button bg={'black'} color={'white'} size={'lg'}  w={['95%','90%', '85%','80%','40%']}
                     h={12} my={4}
-                    _hover={{bg:'gray.900'}}
-                    _active={{bg:'gray.800'}}
+                    _hover={{bg:'blueGray.900'}}
+                    _active={{bg:'blueGray.800'}}
+                    onPress={()=>{navigation.navigate('mytabs')}}
                     >Cancel</Button>
             </HStack>
     </Center>        

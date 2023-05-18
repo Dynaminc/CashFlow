@@ -26,7 +26,22 @@ import CardPage from "./main/cards";
 import Statistics from "./main/statistics";
 import AtmLocator from "./main/atmLocator";
 import AtmMap from "./main/atmMap";
-import Transfer from "./transfer/main";
+import Transfer from "./subscreen/transfer";
+import Deposit from "./subscreen/deposit";
+import SearchBank from "./subscreen/searchBank";
+import Airtime from "./subscreen/airtime";
+import Electricity from "./subscreen/electricity";
+import Profile from "./subscreen/profile";
+import Reciepts from "./subscreen/reciepts";
+
+// import { NavigationContainer } from "react-navigation";
+// import {NavigationContainer } from '@react-navigation/native'
+// import { createStackNavigator } from '@react-navigation/stack';
+
+import {NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from "@react-navigation/stack";
+import MyTabs from "./main";
+
 
 // Define the config
 const config = {
@@ -38,21 +53,45 @@ const config = {
 export const theme = extendTheme({ config });
 
 export default function App() {
+  const Stack = createStackNavigator();
   return (
   <NativeBaseProvider>
-    {/* <SplashScreen /> */}
-    {/* <Onboarding/> */}
-    {/* <SignIn /> */}
-    {/* <SignUp /> */}
-    {/* <SignSuccess /> */}
-    {/* <ProcessingPayment /> */}
-    {/* <SuccessPayment /> */}
-    {/* <DashBoard /> */}
-    {/* <CardPage/> */}
-    {/* <Statistics /> */}
-    {/* <AtmLocator /> */}
-    {/* <AtmMap/> */}
-    <Transfer />
+    <NavigationContainer>
+      <Stack.Navigator
+        detachInactiveScreens
+        animationEnabled
+        gestureEnabled
+        animationTypeForReplace={'push'}
+        screenOptions={{
+          headerShown: false
+        }}
+        >
+          {/* <Stack.Screen name="Splash" component={SplashScreen} />
+          <Stack.Screen name="Onboarding" component={Onboarding} />
+          <Stack.Screen name="Signin" component={SignIn} />
+          <Stack.Screen name="Signup" component={SignUp} />
+          <Stack.Screen name="SignSuccess" component={SignSuccess} /> */}
+
+          
+          
+
+          
+          <Stack.Screen name="mytabs" component={MyTabs}/>
+
+          <Stack.Screen name="SuccessPayment" component={SuccessPayment} />
+          <Stack.Screen name="Processing" component={ProcessingPayment} />
+          
+          <Stack.Screen name="Locator" component= {AtmMap} />
+          <Stack.Screen name="Transfer" component= {Transfer} />
+          <Stack.Screen name="Deposit" component= {Deposit} />
+          <Stack.Screen name="Searchbank" component={SearchBank} />
+          <Stack.Screen name='Airtime' component={Airtime} />
+          <Stack.Screen name='Electricity' component={Electricity} />
+          <Stack.Screen name='Profile' component={Profile} />
+          <Stack.Screen name="Reciepts" component={Reciepts} />
+        </Stack.Navigator>
+    </NavigationContainer>
+
   </NativeBaseProvider>
 
   )
